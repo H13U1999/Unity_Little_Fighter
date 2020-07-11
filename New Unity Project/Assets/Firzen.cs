@@ -28,7 +28,7 @@ public class Firzen : MonoBehaviour
         freezeball.GetComponent<Animator>();
 
     }
-    
+ 
     // Update is called once per frame
     void Update()
     {
@@ -78,21 +78,40 @@ public class Firzen : MonoBehaviour
         {
             freeze.SetBool("Cast", false);
             freeze.SetBool("isIdle", true);
+            FreezeBall.SetActive(true);
+        }
+        if (freezeball.GetCurrentAnimatorStateInfo(0).IsName("freeze_ball"))
+        {
+            movement = new Vector3(1, 0, 0f);
+            movement = movement * 5f * Time.deltaTime;
+            FreezeBall.transform.position -= movement;
+        }
+         if (freezeball.GetCurrentAnimatorStateInfo(0).IsName("freeze_ball_disolve"))
+        {
+            FreezeBall.SetActive(false);
+        }
+        if (firzenball.GetCurrentAnimatorStateInfo(0).IsName("firzen_ball_disolve"))
+        {
+            FirzenBall.SetActive(false);
+        }
 
+        if (firzenball.GetCurrentAnimatorStateInfo(0).IsName("firzen_ball_shoot"))
+        {
+            movement = new Vector3(1, 0, 0f);
+            movement = movement * 1f * Time.deltaTime;
+            FirzenBall.transform.position += movement;
         }
         if (firzen.GetCurrentAnimatorStateInfo(0).IsName("firzen_idle") && once2 == true && iscasted2 == true)
         {
-           // FreezeBall.SetActive(true);
+            movement = new Vector3(1, 0, 0f);
+            movement = movement * Speed * Time.deltaTime;
+            FirzenBall.transform.position += movement;
         }
-
-
-
         if ( firzen.GetCurrentAnimatorStateInfo(0).IsName("firzen_run") && FirzenObj.transform.position.x > -0.5){
             firzen.SetBool("isRunning", false);
             firzen.SetTrigger("attack");
-
-            
         }
+
         if(firzen.GetCurrentAnimatorStateInfo(0).IsName("firzen_fall_back")){
              movement2 = new Vector3(1, 0, 0f);
             movement2 = movement2 * 8f * Time.deltaTime;
@@ -130,12 +149,12 @@ public class Firzen : MonoBehaviour
         {
             firzen.SetBool("Cast", false);
             firzen.SetBool("isIdle", true);
-            
-        }
-      if(iscasted2)
             FirzenBall.SetActive(true);
+
+        }
     }
     private void FixedUpdate() {
         
     }
+    
 }
