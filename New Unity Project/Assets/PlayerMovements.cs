@@ -43,6 +43,7 @@ public class PlayerMovements : MonoBehaviour
 
         movement.x = horizontal;
         movement.y = vertical;
+        transform.position = new Vector2(transform.position.x, Mathf.Clamp(transform.position.y, -10f, -1));
     }
     void FixedUpdate()
     {
