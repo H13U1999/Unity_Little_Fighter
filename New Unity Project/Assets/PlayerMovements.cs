@@ -14,27 +14,28 @@ public class PlayerMovements : MonoBehaviour
     {
         float horizontal = 0f;
         float vertical = 0f;
+        GetComponent<Animator>().SetFloat("Speed", 0);
         if (Input.GetKey(KeyCode.A))
         {
             horizontal = -1;
             GetComponent<SpriteRenderer>().flipX = true;
-            GetComponent<Animator>().SetTrigger("Walk");
+            GetComponent<Animator>().SetFloat("Speed", 4);
         }
         if (Input.GetKey(KeyCode.D))
         {
             horizontal = 1;
             GetComponent<SpriteRenderer>().flipX = false;
-            GetComponent<Animator>().SetTrigger("Walk");
+            GetComponent<Animator>().SetFloat("Speed",4);
         }
         if (Input.GetKey(KeyCode.W))
         {
             vertical = 1;
-            GetComponent<Animator>().SetTrigger("Walk");
+            GetComponent<Animator>().SetFloat("Speed", 4);
         }
         if (Input.GetKey(KeyCode.S))
         {
             vertical = -1;
-            GetComponent<Animator>().SetTrigger("Walk");
+            GetComponent<Animator>().SetFloat("Speed", 4);
         }
         if(Input.GetKeyDown(KeyCode.K))
         {
